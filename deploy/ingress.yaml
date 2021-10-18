@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sams-inventory-ingress
+  namespace: '@@sams-inventory/kubernetes/namespace@@'
+  annotations:
+    nginx.ingress.kubernetes.io-rewrite-target: '/'
+spec:
+  rules:
+    - host: '@@sams-inventory/kubernetes/ingress/host@@'
+      http:
+        paths:
+          - path: '/'
+            pathType: Prefix
+            backend:
+              service:
+                name: sams-inventory
+                port:
+                  number: '@@sams-inventory/kubernetes/ingress/port@@'

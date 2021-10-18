@@ -1,0 +1,9 @@
+apiVersion: v2
+name: sams-inventory
+description: A Helm chart for Kubernetes deployment for Inventory Legacy Core
+
+type: application
+
+version: '@@sams-inventory/version@@'
+
+appVersion: '@@sams-inventory/appVersion@@'

@@ -1,0 +1,17 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sams-inventory
+  namespace: '@@sams-inventory/kubernetes/namespace@@'
+  labels:
+    app: sams-inventory
+spec:
+  ports:
+    - port: '@@sams-inventory/kubernetes/ingress/port@@'
+      protocol: TCP
+      targetPort: '@@sams-inventory/docker/containerPort@@'
+      name: http
+  selector:
+    app: sams-inventory
+  type: ClusterIP

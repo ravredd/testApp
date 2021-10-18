@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: sams-inventory
+    prometheus: monitoring
+    release: sams-inventory
+  name: sams-inventory
+  namespace: '{{ .Release.Namespace }}'
+spec:
+  endpoints:
+    - path: '/envoy-metrics'
+      port: envoy-metrics
+  selector:
+    matchLabels:
+      app: sams-inventory

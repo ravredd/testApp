@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sams-inventory
+  namespace: '@@sams-inventory/kubernetes/namespace@@'
+spec:
+  replicas: '@@sams-inventory/kubernetes/replicas@@'
+  selector:
+    matchLabels:
+      app: sams-inventory
+  template:
+    metadata:
+      labels:
+        app: sams-inventory
+    spec:
+      containers:
+        - image: '@@sams-inventory/docker/container@@'
+          name: sams-inventory
+          ports:
+            - containerPort: '@@sams-inventory/docker/containerPort@@'
+              protocol: TCP
+          env:
+            - name: APPLICATION_INSIGHTS_IKEY
+              value: '@@sams-inventory/appInsights/key@@'
+            - name: AZURE_KEYVAULT_CLIENT_ID
+              value: '@@sams-inventory/keyvault/clientId@@'
+            - name: AZURE_KEYVAULT_CLIENT_KEY
+              value: '@@sams-inventory/keyvault/clientKey@@'
+            - name: AZURE_KEYVAULT_TENANT_ID
+              value: '@@sams-inventory/keyvault/tenantId@@'
+            - name: AZURE_KEYVAULT_URI
+              value: '@@sams-inventory/keyvault/uri@@'
+      restartPolicy: Always

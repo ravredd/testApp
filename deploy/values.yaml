@@ -1,0 +1,17 @@
+env: '@@sams-inventory/kubernetes/env@@'
+region: '@@sams-inventory/kubernetes/region@@'
+replicaCount: '@@sams-inventory/kubernetes/replicas@@'
+
+image:
+  name: '@@sams-inventory/docker/container@@'
+
+resources:
+  limits:
+    cpu: '@@sams-inventory/kubernetes/resources/limits/cpu@@'
+    memory: '@@sams-inventory/kubernetes/resources/limits/memory@@'
+  requests:
+    cpu: '@@sams-inventory/kubernetes/resources/requests/cpu@@'
+    memory: '@@sams-inventory/kubernetes/resources/requests/memory@@'
+
+secrets:
+  keyvaultname: '@@sams-inventory/keyvault/name@@'
